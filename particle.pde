@@ -6,7 +6,6 @@ public class Particle {
   PVector acc;
   PVector previousPos;
   float maxSpeed;
-  float r = random(255);
   
   Particle(PVector start, float maxspeed) {
     maxSpeed = maxspeed;
@@ -34,16 +33,7 @@ public class Particle {
   }
   
   void show() {
-
-    if (receiving == true) {
-      //stroke(255 * (1.0 - distance), 15, 79 * distance, 5);
-      stroke(17 * distance, 150, 135 * (1.0 - distance), 5);
-    }
-    
-    if (receiving == false) {
-      stroke(17, 150, 135, 5);
-    }
-    
+    stroke(255, 111, 0);
     strokeWeight(1);
     
     line(pos.x, pos.y, previousPos.x, previousPos.y);
@@ -81,7 +71,6 @@ public class Particle {
     int y = floor(pos.y / flowfield.scl);
     int index = x + y * flowfield.cols;
     
-    //?array index out of bounds -75
     PVector force = flowfield.vectors[index];
     applyForce(force);
   }

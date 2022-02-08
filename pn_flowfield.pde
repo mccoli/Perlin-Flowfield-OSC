@@ -1,4 +1,4 @@
- //basis of code by Daniel Shiffman. available at: https://github.com/CodingTrain/website/blob/main/CodingChallenges/CC_024_PerlinNoiseFlowField/Processing/CC_024_PerlinNoiseFlowField/flowfield.pde
+//basis of code by Daniel Shiffman. available at: https://github.com/CodingTrain/website/blob/main/CodingChallenges/CC_024_PerlinNoiseFlowField/Processing/CC_024_PerlinNoiseFlowField/flowfield.pde
 
 public class FlowField {
   PVector[] vectors;
@@ -20,46 +20,19 @@ public class FlowField {
       float yoff = 0;
       for (int x = 0; x < cols; x++) {
         
-        if (receiving == true) {
-          //print("receiving\n");
-          if (gesture == 1) {
-            float angle = noise((left_right * 10), yoff, zoff) * TWO_PI * 4;
-            PVector v = PVector.fromAngle(angle);
-            v.setMag(0.5);
-            
-            int index = x + y * cols;
-            vectors[index] = v;
-           
-            xoff += inc;
-          }
-          
-          if (gesture == 2) {
-            float angle = noise((left_right * 10), yoff, zoff) * TWO_PI * 4;
-            PVector v = PVector.fromAngle(angle * 10);
-            v.setMag(3);
-            
-            int index = x + y * cols;
-            vectors[index] = v;
-           
-            xoff += inc;
-          }
-        }
+        float angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
+        PVector v = PVector.fromAngle(angle);
+        v.setMag(10);
         
-        if (receiving == false) {
-        //print("not receiving!\n");
-          float angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
-          PVector v = PVector.fromAngle(angle);
-          v.setMag(0.7);
-        
-          int index = x + y * cols;
-          vectors[index] = v;
+        int index = x + y * cols;
+        vectors[index] = v;
        
-          xoff += inc;
-        }
+      
+      xoff += inc;
       }
-      yoff += inc;
+    yoff += inc;
     }
-    zoff += 0.0004;
+  zoff += 0.00004;
   }
   
   void display() {
